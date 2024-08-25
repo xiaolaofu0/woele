@@ -266,7 +266,7 @@ class TYT:
         except Exception as e:
             print(f"[{self.name}] ❌领取失败: {e}")
 
-
+"""
 if __name__ == '__main__':
     if 'elmck' in os.environ:
         cookie = os.environ.get('elmck')
@@ -283,4 +283,25 @@ if __name__ == '__main__':
         print(f"======开始第{i + 1}个账号======")
         TYT(ck).main()
         print("2s后进行下一个账号")
+        time.sleep(2)
+"""
+
+if __name__ == '__main__':
+    if 'elmck' in os.environ:
+        cookie = os.environ.get('elmck')
+    else:
+        print("环境变量中不存在[elmck]，启用本地变量模式")
+        cookie = ck
+
+    if not cookie:
+        print("本地变量为空，请设置其中一个变量后再运行")
+        exit(-1)
+
+    cookies = cookie.split("&")
+    print(f"饿了么共获取到 {len(cookies)} 个账号")
+    for i, ck in enumerate(cookies):
+        ck = reorder_ck(ck)
+        print(f"======开始第{i + 1}个账号======")
+        TYT(ck).main()
+        print("2秒后进行下一个账号")
         time.sleep(2)
