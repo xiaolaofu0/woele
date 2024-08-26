@@ -276,7 +276,8 @@ if __name__ == '__main__':
     if cookie == "":
         print("本地变量为空，请设置其中一个变量后再运行")
         exit(-1)
-    cookies = cookie.split("&")
+    # 使用换行符进行分割
+    cookies = cookie.splitlines()
     print(f"饿了么共获取到 {len(cookies)} 个账号")
     for i, ck in enumerate(cookies):
         ck = reorder_ck(ck)
@@ -284,3 +285,4 @@ if __name__ == '__main__':
         TYT(ck).main()
         print("2s后进行下一个账号")
         time.sleep(2)
+
