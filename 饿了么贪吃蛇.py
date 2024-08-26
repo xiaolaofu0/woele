@@ -437,13 +437,16 @@ class TCS:
 
 if __name__ == '__main__':
     if 'elmck' in os.environ:
-        cookie = os.environ.get('elmck')
+        # 将换行符替换为 & 符号，确保能正确分割
+        cookie = os.environ.get('elmck').replace('\n', '&')
     else:
         print("环境变量中不存在[elmck],启用本地变量模式")
         cookie = ck
+    
     if cookie == "":
         print("本地变量为空，请设置其中一个变量后再运行")
         exit(-1)
+    
     cookies = cookie.split("&")
 
     print(f"饿了么共获取到 {len(cookies)} 个账号")
